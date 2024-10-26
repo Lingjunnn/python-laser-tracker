@@ -30,20 +30,3 @@ The code performs the following steps, and displays the results in several windo
 4. Apply a threshold to each compenent (hopefully keeping just the dot from the laser)
 5. Perform an AND operation on the 3 images (which "should" cut down on false positives)
 6. Display the result.
-
-The filtering part is done using successive `thresholding <http://docs.opencv.org/modules/imgproc/doc/miscellaneous_transformations.html?highlight=threshold#threshold>`_
-
-.. image:: img/filtering.png
-
-License
--------
-
-This code is MIT-licensed. You can basically do whatever you want with it.
-
-
-Contributing
-------------
-
-Any suggestions, bug reports, or pull requests are welcome! If there's
-something I should be doing differently, here, feel free to open an Issue and
-let me know.
