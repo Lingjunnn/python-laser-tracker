@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 import sys
 import argparse
 import cv2
@@ -9,7 +8,7 @@ class LaserTracker(object):
 
     def __init__(self, cam_width=640, cam_height=480, hue_min=20, hue_max=160,
                  sat_min=100, sat_max=255, val_min=200, val_max=256,
-                 display_thresholds=False):
+                 display_thresholds=True):
         """
         * ``cam_width`` x ``cam_height`` -- This should be the size of the
         image coming from the camera. Default is 640x480.
@@ -76,7 +75,7 @@ class LaserTracker(object):
         # Try to start capturing frames
         self.capture = cv2.VideoCapture(device)
         if not self.capture.isOpened():
-            sys.stderr.write("Faled to Open Capture device. Quitting.\n")
+            sys.stderr.write("Failed to Open Capture device. Quitting.\n")
             sys.exit(1)
 
         # set the wanted image size from the camera
@@ -114,7 +113,7 @@ class LaserTracker(object):
         (t, tmp) = cv2.threshold(
             self.channels[channel],  # src
             maximum,  # threshold value
-            0,  # we dont care because of the selected type
+            0,  # we don't care because of the selected type
             cv2.THRESH_TOZERO_INV  # t type
         )
 
@@ -162,10 +161,10 @@ class LaserTracker(object):
                 cv2.circle(frame, (int(x), int(y)), int(radius),
                            (0, 255, 255), 2)
                 cv2.circle(frame, center, 5, (0, 0, 255), -1)
-                # then update the ponter trail
-                if self.previous_position:
-                    cv2.line(self.trail, self.previous_position, center,
-                             (255, 255, 255), 2)
+                # then update the pointer trail
+                # if self.previous_position:
+                #     cv2.line(self.trail, self.previous_position, center,
+                #              (255, 255, 255), 2)
 
         cv2.add(self.trail, frame, frame)
         self.previous_position = center
